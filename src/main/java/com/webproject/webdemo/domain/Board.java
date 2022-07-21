@@ -15,8 +15,8 @@ import lombok.Setter;
 public class Board {
     private Long boardNum;
     private String writer;
-    private String title;
-    private String content;
+    private String title="";
+    private String content="";
 
     public Board() {
     }

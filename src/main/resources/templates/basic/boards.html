@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .container {
+            max-width: 800px;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+<br>
+<h1><a href="#">Board</a></h1>
+<br>
+<hr>
+<table class="table table-hover table-striped text-center" style="border: 1px solid;">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>글쓴이</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="board : ${boards}"> <!-- 모델 데이터를 순회하면서 화면에 뿌려준다. -->
+        <td th:text="${board.boardNum}"></a>글번호</td>
+        <td><a href="board.html" th:href="@{/basic/boards/{boardId}(boardId=${board.boardNum})}"
+               th:text="${board.title}"></a></td>
+        <td th:text="${board.writer}">작성자</td>
+    </tr>
+
+    </tbody>
+</table>
+
+    <button type="button" class="btn btn-primary"
+            onclick="location.href='addBoard.html'"
+            th:onclick="|location.href='@{/basic/boards/add}'|"> 글쓰기 <!-- 링크를 이동함 -->
+    </button>
+
+</div>
+
+</body>
+</html>
