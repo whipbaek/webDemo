@@ -6,16 +6,27 @@
     <title>Title</title>
 </head>
 <body>
-<form>
-    <br><br>
-    <div class="row">
-        <div class="col-xl-1">
-            <input type="text" for="ex1" class="form-control" placeholder="writer">
-        </div>
-        <div class="col-xl-1">
-            <input type="text" class="form-control" placeholder="password">
+<form style="padding-left: 20px">
+    <div class="form-group">
+        <br>
+        <div class="col-xl-1" >
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="작성자명">
         </div>
     </div>
+    <br>
+    <div class="form-group">
+        <div class="col-xl-4">
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="제목">
+        </div>
+    </div>
+    <br>
+    <div class="col-sm-6">
+        <textarea style="width: 600px;" class="form-control" id="content" rows="20" placeholder="글 내용을 작성해주세요."></textarea>
+    </div>
+
+    <br>
+
+    <button type="submit" style="width: 200px" class="btn btn-primary">글쓰기</button>
 </form>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+ <br>
+ <h1>글 상세 내용</h1>
+<hr/>
+ <br>
+<div style="padding-left: 20px">
+    <div class="col-xl-4">
+ <input type="text" id="title" name="title" class="form-control"
+        value="title" th:value="${board.title}" style="font-size: 25px" readonly></input>
+    </div>
+        <br>
+    <div class="col-xl-1" >
+ <input type="text" id="writer" name="writer" class="form-control"
+           value="writer" th:value="${board.writer}" style="font-size: 20px" readonly></input>
+    </div>
+<hr>
+<br>
+<textarea rows="15" class="form-control" id="content" name="content" value="content" th:text="${board.content}"
+       style="width: 900px;font-size: 20px"></textarea>
+<br>
+<br>
+    <button type="button" class="btn btn-primary"
+            th:onclick="|location.href='@{/basic/boards/{boardNum}/edit(boardNum=${board.boardNum})}'|"> 수정하기 <!-- 링크를 이동함 -->
+    </button>
+ <button type="button" class="btn btn-secondary"
+         onclick="location.href='board.html'" style="padding-left: 10px"
+         th:onclick="|location.href='@{/basic/boards}'|"> 목록으로 <!-- 링크를 이동함 -->
+ </button>
+</div>
+</body>
+</html>

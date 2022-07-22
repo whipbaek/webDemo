@@ -5,8 +5,8 @@ import com.webproject.webdemo.domain.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ public class BasicController {
 
     @Autowired
     public BasicController(BoardRepository boardRepository) {
-        boardRepository.save(new Board("John","title1","empty content"));
-        boardRepository.save(new Board("Emy","title2","empty content2"));
+        boardRepository.save(new Board("John", "title1", "empty content"));
+        boardRepository.save(new Board("Emy", "title2", "empty content2"));
 
         this.boardRepository = boardRepository;
     }
@@ -32,9 +32,38 @@ public class BasicController {
         return "basic/boards";
     }
 
-    @GetMapping("/add")
-    public String addBoard(){
+    @GetMapping("/add") //글쓰기 페이지로 진입
+    public String addBoard() {
         return "basic/addBoard";
     }
 
+    @PostMapping("/add")
+    public String addBoard(Board board, RedirectAttributes redirectAttributes) {
+        System.out.println(board.getContent() + 12);
+        Board savedBoard = boardRepository.save(board);
+        redirectAttributes.addAttribute("boardNum", savedBoard.getBoardNum());
+
+        return "redirect:/basic/boards/{boardNum}";
+    }
+
+    @GetMapping("/{boardNum}")
+    public String board(@PathVariable long boardNum, Model model) {
+        Board board = boardRepository.findByBoardNum(boardNum);
+        model.addAttribute("board", board);
+
+        return "basic/board";
+    }
+
+    @GetMapping("/{boardNum}/edit")
+    public String editForm(@PathVariable Long boardNum, Model model) {
+        Board board = boardRepository.findByBoardNum(boardNum);
+        model.addAttribute("board", board);
+        return "basic/editBoard";
+    }
+
+    @PostMapping("/{boardNum}/edit")
+    public String edit(@PathVariable Long boardNum, @ModelAttribute Board board) {
+        boardRepository.update(boardNum, board);
+        return "redirect:/basic/boards/{boardNum}";
+    }
 }

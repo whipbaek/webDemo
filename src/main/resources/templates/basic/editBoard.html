@@ -8,27 +8,27 @@
     <title>Title</title>
 </head>
 <body>
-<form style="padding-left: 20px" action="board.html" th:action method="post" >
+<form style="padding-left: 20px"  th:action method="post" >
     <br>
     <div class="form-group">
         <div class="col-xl-4">
-            <input type="text" class="form-control" name="title" placeholder="제목">
+            <input type="text" class="form-control" name="title" value="title" th:value="${board.title}">
         </div>
     </div>
     <div class="form-group">
         <br>
         <div class="col-xl-1" >
-            <input type="text" class="form-control" name="writer" placeholder="작성자명">
+            <input type="text" class="form-control" name="writer" value="writer" th:value="${board.writer}">
         </div>
     </div>
     <br>
     <div class="col-sm-6">
-        <textarea style="width: 900px;" class="form-control" name="content" rows="15" placeholder="글 내용을 작성해주세요."></textarea>
+        <textarea style="width: 900px;" class="form-control" name="content" rows="15" value="content" th:text="${board.content}"></textarea>
     </div>
     <br>
-    <button type="submit" style="width: 200px" class="btn btn-primary">글쓰기</button>
+    <button type="submit" style="width: 200px" class="btn btn-primary">수정하기</button>
     <button type="button" style="width: 100px; padding-left: 10px;" class="btn btn-secondary"
-            th:onclick="|location.href='@{/basic/boards}'|">취소</button>
+            th:onclick="|location.href='@{/basic/boards/{boardNum}(boardNum=${board.boardNum})}'|">취소</button>
 </form>
 
 </body>

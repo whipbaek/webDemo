@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+ <br>
+ <h1>글 상세 내용</h1>
+<hr/>
+ <br>
+<div style="padding-left: 20px">
+ <input type="text" id="title" name="title" class="form-control"
+        value="title" th:value="${board.title}" style="font-size: 25px" readonly></input>
+ <br>
+ <input type="text" id="writer" name="writer" class="form-control"
+           value="writer" th:value="${board.writer}" style="font-size: 20px" readonly></input>
+
+<hr>
+<br>
+<label type="text" id="content" name="content" value="content" th:value="${board.content}"
+       style="font-size: 20px">content</label>
+<br>
+<br>
+
+ <button type="button" class="btn btn-primary"
+         onclick="location.href='board.html'"
+         th:onclick="|location.href='@{/basic/boards}'|"> 목록으로 <!-- 링크를 이동함 -->
+ </button>
+</div>
+</body>
+</html>
